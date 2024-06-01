@@ -33,8 +33,8 @@ const Navigation = () => {
     </>
 
     return (
-        <div className="navbar fixed z-10 bg-opacity-30 font-sourceSans3 bg-black text-white px-24">
-            <div className="navbar-start">
+        <div className="navbar fixed z-10 bg-opacity-30 font-sourceSans3 bg-black text-white px-20">
+            <div className=" navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -54,8 +54,8 @@ const Navigation = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <div className="flex items-center justify-around">
-                    <label className="swap swap-rotate mx-4">
+                <div className="flex items-center gap-2">
+                    <label className="swap swap-rotate">
                         <input onClick={toggleTheme} type="checkbox" />
                         <div className="swap-on text-3xl"><LuMoon /></div>
                         <div className="swap-off text-3xl"><LuSun /></div>

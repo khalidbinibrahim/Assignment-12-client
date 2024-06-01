@@ -17,13 +17,11 @@ const SignUp = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const firstName = data.firstName;
-        const lastName = data.lastName;
-        const fullName = firstName + ' ' + lastName;
+        const fullName = data.fullName;
         const email = data.email;
         const PhotoUrl = data.PhotoUrl;
         const password = data.password;
-        console.log(fullName, lastName, email, PhotoUrl);
+        console.log(fullName, email, PhotoUrl);
 
         createUser(email, password)
             .then(res => {
@@ -69,8 +67,12 @@ const SignUp = () => {
     }
 
     return (
-        <div>
-            <div className='mb-10 font-sourceSans3'>
+        <div className='flex justify-between items-center'>
+            <div className='w-1/2'>
+                <img src="https://i.pinimg.com/1200x/6b/2e/ed/6b2eed54e2a15ee922127f5e6f6d40a7.jpg" alt="" />
+            </div>
+
+            <div className='mb-10 font-sourceSans3 w-1/2'>
                 <div className='flex items-center'>
                     <div className='mx-8 lg:mx-auto my-10 p-12 border rounded-md border-gray-300 font-montserrat'>
                         <h1 className='mb-8 mx-20 font-bold text-black text-center text-2xl'>Sign Up to  <span className="text-[#F7A582] text-3xl font-bold font-sourceSans3">PETCO`</span></h1>
@@ -107,7 +109,7 @@ const SignUp = () => {
                 </div>
 
                 <div className='mb-6 font-montserrat'>
-                        <div className="divider w-[520px] mx-auto">Or</div>
+                        <div className="divider w-[460px] mx-auto">Or</div>
                     </div>
 
                     <div className='flex flex-col items-center justify-center gap-4 font-montserrat'>

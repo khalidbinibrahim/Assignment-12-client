@@ -60,8 +60,12 @@ const SignIn = () => {
 
     return (
         <div>
-            <div className='font-sourceSans3'>
-                <div className='mb-10'>
+            <div className='flex justify-between items-center'>
+                <div className='w-1/2'>
+                    <img src="https://i.pinimg.com/1200x/6b/2e/ed/6b2eed54e2a15ee922127f5e6f6d40a7.jpg" alt="" />
+                </div>
+
+                <div className='mb-10 font-sourceSans3 w-1/2'>
                     <div className='flex items-center'>
                         <div className='mx-8 lg:mx-auto my-10 p-12 border rounded-md border-gray-300 font-montserrat'>
                             <h1 className='mb-8 mx-20 font-bold text-black text-center text-2xl'>Sign in to  <span className="text-[#F7A582] text-3xl font-bold font-sourceSans3">PETCO`</span></h1>
