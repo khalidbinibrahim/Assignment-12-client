@@ -43,9 +43,9 @@ const Navigation = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <div className="flex gap-2 items-center mr-6 text-3xl">
+                <div className="flex gap-4 items-center mr-6 text-3xl">
                     <img className="w-16 h-16 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGOLHOTFPFlHnHAmFfe8_Z-ZeFDfWgnJhBgA&s" alt="" />
-                   <h1 className="text-[#F7A582] text-3xl font-bold font-sourceSans3">PET<span className="text-white">CO`</span></h1>
+                    <h1 className="text-[#F7A582] text-3xl font-bold font-sourceSans3">PET<span className="text-white">CO`</span></h1>
                 </div>
             </div>
             <div className="navbar-end">

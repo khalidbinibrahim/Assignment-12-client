@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
-import { toast } from 'react-toastify';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaGithub } from 'react-icons/fa';
 import { IoMdEye } from "react-icons/io";
 import { PiEyeClosedBold } from "react-icons/pi";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -29,12 +29,21 @@ const SignUp = () => {
                 res.user.displayName = fullName;
                 const loggedUser = res.user;
                 console.log(loggedUser);
+                Swal.fire({
+                    title: "Success",
+                    text: "User Created Successfully",
+                    icon: "success"
+                });
                 navigate(location?.state ? location.state : '/');
                 reset();
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error creating account. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error to create User"
+                });
             });
     };
 
@@ -46,11 +55,19 @@ const SignUp = () => {
         gitHubLogin()
             .then(res => {
                 console.log(res.user);
-                toast.success("Logged in with GitHub successfully");
+                Swal.fire({
+                    title: "Success",
+                    text: "Logged in with GitHub successfully",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error logging in with GitHub. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error logging in with GitHub. Please try again."
+                });
             });
     }
 
@@ -58,11 +75,19 @@ const SignUp = () => {
         googleLogin()
             .then(res => {
                 console.log(res.user);
-                toast.success("Logged in with Google successfully");
+                Swal.fire({
+                    title: "Success",
+                    text: "Logged in with Google successfully",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error logging in with Google. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error logging in with Google. Please try again."
+                });
             });
     }
 
@@ -109,13 +134,13 @@ const SignUp = () => {
                 </div>
 
                 <div className='mb-6 font-montserrat'>
-                        <div className="divider w-[460px] mx-auto">Or</div>
-                    </div>
+                    <div className="divider w-[460px] mx-auto">Or</div>
+                </div>
 
-                    <div className='flex flex-col items-center justify-center gap-4 font-montserrat'>
-                        <a onClick={handleGithubLogin} className="btn btn-outline text-black bg-white rounded-3xl border-gray-400 px-10 py-auto font-semibold text-base w-[460px]"><FaGithub className='text-2xl' /> Continue with Github</a>
-                        <a onClick={handleGoogleLogin} className="btn btn-outline text-black bg-white rounded-3xl border-gray-400 px-10 py-auto font-semibold text-base w-[460px]"><FcGoogle className='text-2xl' /> Continue with Google</a>
-                    </div>
+                <div className='flex flex-col items-center justify-center gap-4 font-montserrat'>
+                    <a onClick={handleGithubLogin} className="btn btn-outline text-black bg-white rounded-3xl border-gray-400 px-10 py-auto font-semibold text-base w-[460px]"><FaGithub className='text-2xl' /> Continue with Github</a>
+                    <a onClick={handleGoogleLogin} className="btn btn-outline text-black bg-white rounded-3xl border-gray-400 px-10 py-auto font-semibold text-base w-[460px]"><FcGoogle className='text-2xl' /> Continue with Google</a>
+                </div>
             </div>
         </div>
     );

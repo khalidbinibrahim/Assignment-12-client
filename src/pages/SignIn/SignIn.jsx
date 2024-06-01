@@ -4,9 +4,9 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { toast } from 'react-toastify';
 import { IoMdEye } from "react-icons/io";
 import { PiEyeClosedBold } from "react-icons/pi";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -21,12 +21,21 @@ const SignIn = () => {
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
+                Swal.fire({
+                    title: "Success",
+                    text: "User sign in Successfully",
+                    icon: "success"
+                });
                 navigate(location?.state ? location.state : '/');
                 reset();
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error logging in user. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error to create User"
+                });
             })
     }
 
@@ -38,11 +47,19 @@ const SignIn = () => {
         gitHubLogin()
             .then(res => {
                 console.log(res.user);
-                toast.success("Logged in with GitHub successfully");
+                Swal.fire({
+                    title: "Success",
+                    text: "Logged in with GitHub successfully",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error logging in with GitHub. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error logging in with GitHub. Please try again."
+                });
             });
     }
 
@@ -50,11 +67,19 @@ const SignIn = () => {
         googleLogin()
             .then(res => {
                 console.log(res.user);
-                toast.success("Logged in with Google successfully");
+                Swal.fire({
+                    title: "Success",
+                    text: "Logged in with Google successfully",
+                    icon: "success"
+                });
             })
             .catch(error => {
                 console.error(error);
-                toast.error("Error logging in with Google. Please try again.");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error logging in with Google. Please try again."
+                });
             });
     }
 
