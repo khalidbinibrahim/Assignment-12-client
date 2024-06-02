@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
     console.log(location.pathname);
 
     if (loading) {
-        return <span className="loading loading-infinity loading-lg mx-auto my-20"></span>
+        return <span className="loading loading-infinity loading-lg mx-auto flex justify-center my-20"></span>
     }
 
     if (user) {
