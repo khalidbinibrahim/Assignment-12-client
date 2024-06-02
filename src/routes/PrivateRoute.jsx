@@ -8,14 +8,14 @@ const PrivateRoute = ({ children }) => {
     console.log(location.pathname);
 
     if (loading) {
-        return <span className="loading loading-infinity loading-lg mx-auto my-16"></span>
+        return <span className="loading loading-infinity loading-lg mx-auto my-20"></span>
     }
 
     if (user) {
         return children;
     }
 
-    return <Navigate state={location.pathname} to="/login"></Navigate>;
+    return <Navigate state={location.pathname} to="/signin"></Navigate>;
 };
 
 export default PrivateRoute;

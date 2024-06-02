@@ -7,7 +7,7 @@ const PetListing = () => {
     const [category, setCategory] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/pets')
+        fetch('https://assignment-12-server-mu-fawn.vercel.app/pets')
             .then(res => res.json())
             .then(data => setPets(data))
             .catch(error => console.error('Error fetching pets:', error));
