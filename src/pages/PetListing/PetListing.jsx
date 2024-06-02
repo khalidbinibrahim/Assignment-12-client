@@ -5,7 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 const fetchPets = async ({ pageParam = 1 }) => {
-    const res = await axios.get(`http://localhost:5000/pets?page=${pageParam}`);
+    const res = await axios.get(`https://assignment-12-server-mu-fawn.vercel.app/pets?page=${pageParam}`);
     return res.data;
 };
 
@@ -45,7 +45,7 @@ const PetListing = () => {
                 <input
                     type="text"
                     placeholder="Search pets by name"
-                    className="input input-bordered mb-4 md:mb-0 md:mr-4"
+                    className="block w-80 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
