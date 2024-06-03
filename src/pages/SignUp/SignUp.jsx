@@ -7,6 +7,7 @@ import { FaGithub } from 'react-icons/fa';
 import { IoMdEye } from "react-icons/io";
 import { PiEyeClosedBold } from "react-icons/pi";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SignUp = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -29,13 +30,21 @@ const SignUp = () => {
                 res.user.displayName = fullName;
                 const loggedUser = res.user;
                 console.log(loggedUser);
-                Swal.fire({
-                    title: "Success",
-                    text: "User Created Successfully",
-                    icon: "success"
-                });
-                navigate(location?.state ? location.state : '/');
-                reset();
+                const user = { email };
+                
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                .then(res => {
+                    console.log(res.data);
+                    if(res.data.message) {
+                        Swal.fire({
+                            title: "Success",
+                            text: "User Created Successfully",
+                            icon: "success"
+                        });
+                        navigate(location?.state ? location.state : '/');
+                        reset();
+                    }
+                })
             })
             .catch(error => {
                 console.error(error);
