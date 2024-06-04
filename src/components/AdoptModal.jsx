@@ -23,7 +23,7 @@ const AdoptModal = ({ pet, onClose }) => {
         console.log(adoptionData);
 
         try {
-            const res = await axios.post('https://assignment-12-server-mu-fawn.vercel.app/adoptions', adoptionData);
+            const res = await axios.post('http://localhost:5000/adoptions', adoptionData, { withCredentials: true });
             const data = res.data;
             console.log(data);
             if (res.data.insertedId) {
@@ -40,7 +40,7 @@ const AdoptModal = ({ pet, onClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 font-sourceSans3">
             <div className="bg-white p-8 rounded-lg w-1/2">
                 <div className='flex justify-between items-center mb-6'>
                     <h3 className="font-bold text-black text-center text-2xl">Adopt {pet.name}</h3>

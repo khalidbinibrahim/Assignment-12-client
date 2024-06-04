@@ -5,7 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 const fetchPets = async ({ pageParam = 1 }) => {
-    const res = await axios.get(`https://assignment-12-server-mu-fawn.vercel.app/pets?page=${pageParam}`);
+    const res = await axios.get(`http://localhost:5000/pets?page=${pageParam}`);
     return res.data;
 };
 
@@ -40,7 +40,8 @@ const PetListing = () => {
             );
 
     return (
-        <div className="container px-20 py-40">
+        <div className="container px-20 py-40 font-sourceSans3">
+            <h1 className="text-3xl font-bold text-center my-12">Pet Listing</h1>
             <div className="flex flex-col md:flex-row justify-between items-center mb-12">
                 <input
                     type="text"
