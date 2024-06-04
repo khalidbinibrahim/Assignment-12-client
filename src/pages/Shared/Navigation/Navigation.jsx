@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { LuSun, LuMoon } from "react-icons/lu";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-toastify";
 import { Tooltip } from 'react-tooltip'
@@ -8,15 +8,6 @@ import 'react-tooltip/dist/react-tooltip.css'
 
 const Navigation = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [theme, setTheme] = useState('light');
-
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-    };
-
-    useEffect(() => {
-        document.querySelector('html').setAttribute('data-theme', theme);
-    }, [theme]);
 
     const handleLogOut = () => {
         logOut()
@@ -55,16 +46,10 @@ const Navigation = () => {
                     </ul>
                 </div>
                 <div className="flex items-center gap-2">
-                    <label className="swap swap-rotate">
-                        <input onClick={toggleTheme} type="checkbox" />
-                        <div className="swap-on text-3xl"><LuMoon /></div>
-                        <div className="swap-off text-3xl"><LuSun /></div>
-                    </label>
 
                     {
                         user ?
                             <div className="flex gap-2 items-center">
-                                <button onClick={handleLogOut} className="btn bg-[#F7A582] border-none text-white font-semibold text-base font-sourceSans3 rounded-md px-7">Sign Out</button>
                                 <NavLink to="/update_profile">
                                     <img id="userPhoto" alt="" src={user?.photoURL ? user.photoURL : "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} className="w-14 h-14 rounded-full" />
                                 </NavLink>
@@ -73,6 +58,15 @@ const Navigation = () => {
                                     place="top"
                                     content={user.displayName}
                                 />
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="m-1 text-4xl"><RiArrowDropDownLine /></div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <button onClick={handleLogOut} className="btn bg-[#F7A582] border-none text-white font-semibold text-base font-sourceSans3 rounded-md px-7">Sign Out</button>
+                                        <NavLink to="/update_profile" className="text-black hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold rounded-lg py-2 px-3">Update Profile</NavLink>
+                                        <NavLink to="/dashboard" className="text-black hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold rounded-lg py-2 px-3">Dashboard</NavLink>
+                                    </ul>
+                                </div>
+
                             </div> :
                             <NavLink to="/signin" className="btn bg-[#F7A582] border-none text-white font-semibold text-base font-sourceSans3 rounded-md px-7">Sign In</NavLink>
                     }
