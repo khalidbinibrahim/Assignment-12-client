@@ -7,6 +7,7 @@ const AdoptModal = ({ pet, onClose }) => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const { user } = useContext(AuthContext);
+    const token = localStorage.getItem('token');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +24,11 @@ const AdoptModal = ({ pet, onClose }) => {
         console.log(adoptionData);
 
         try {
-            const res = await axios.post('http://localhost:5000/adoptions', adoptionData, { withCredentials: true });
+            const res = await axios.post('http://localhost:5000/adoptions', adoptionData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             const data = res.data;
             console.log(data);
             if (res.data.insertedId) {

@@ -10,14 +10,19 @@ const PetDetails = () => {
     const { id } = useParams();
     const [pet, setPet] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchPet = async () => {
-            const res = await axios.get(`http://localhost:5000/pets/${id}`, { withCredentials: true });
+            const res = await axios.get(`http://localhost:5000/pets/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setPet(res.data);
         };
         fetchPet();
-    }, [id]);
+    }, [id, token]);
 
     const handleAdoptClick = () => {
         setIsModalOpen(true);

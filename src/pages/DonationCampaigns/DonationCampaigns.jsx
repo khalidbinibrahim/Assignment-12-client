@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const DonationCampaigns = () => {
     const [campaigns, setCampaigns] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
     const campaignsPerPage = 9;
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
         fetchCampaigns();
@@ -14,7 +15,7 @@ const DonationCampaigns = () => {
 
     const fetchCampaigns = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/campaigns?page=${page}&limit=${campaignsPerPage}`);
+            const response = await axiosPublic.get(`/campaigns?page=${page}&limit=${campaignsPerPage}`);
             const newCampaigns = response.data;
 
             setCampaigns((prevCampaigns) => [...prevCampaigns, ...newCampaigns]);
@@ -42,7 +43,7 @@ const DonationCampaigns = () => {
                             <h2 className="text-2xl font-semibold mt-4">{campaign.petName}</h2>
                             <p className="text-gray-600">Max Donation: ${campaign.maxDonation}</p>
                             <p className="text-gray-600">Donated Amount: ${campaign.donatedAmount}</p>
-                            <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">
+                            <button className="btn mt-4 hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
                                 View Details
                             </button>
                         </div>

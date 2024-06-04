@@ -31,20 +31,23 @@ const SignUp = () => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
                 const user = { email };
-                
+
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
-                .then(res => {
-                    console.log(res.data);
-                    if(res.data.message) {
-                        Swal.fire({
-                            title: "Success",
-                            text: "User Created Successfully",
-                            icon: "success"
-                        });
-                        navigate(location?.state ? location.state : '/');
-                        reset();
-                    }
-                })
+                    .then(res => {
+                        console.log(res.data);
+                        const token = res.data.token;
+                        localStorage.setItem('token', token);
+                        console.log('JWT stored in local storage:', token);
+                        if (res.data.message) {
+                            Swal.fire({
+                                title: "Success",
+                                text: "User Created Successfully",
+                                icon: "success"
+                            });
+                            navigate(location?.state ? location.state : '/');
+                            reset();
+                        }
+                    })
             })
             .catch(error => {
                 console.error(error);
