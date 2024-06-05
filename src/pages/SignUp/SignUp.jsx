@@ -30,22 +30,32 @@ const SignUp = () => {
                 res.user.displayName = fullName;
                 const loggedUser = res.user;
                 console.log(loggedUser);
-                const user = { email };
+                const verifyUser = { email };
+                const user = {
+                    fullName,
+                    email
+                }
 
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('http://localhost:5000/users', user)
                     .then(res => {
                         console.log(res.data);
-                        const token = res.data.token;
-                        localStorage.setItem('token', token);
-                        console.log('JWT stored in local storage:', token);
-                        if (res.data.message) {
-                            Swal.fire({
-                                title: "Success",
-                                text: "User Created Successfully",
-                                icon: "success"
-                            });
-                            navigate(location?.state ? location.state : '/');
-                            reset();
+                        if (res.data.insertedId) {
+                            axios.post('http://localhost:5000/jwt', verifyUser, { withCredentials: true })
+                                .then(res => {
+                                    console.log(res.data);
+                                    const token = res.data.token;
+                                    localStorage.setItem('token', token);
+                                    console.log('JWT stored in local storage:', token);
+                                    if (res.data.message) {
+                                        Swal.fire({
+                                            title: "Success",
+                                            text: "User Created Successfully",
+                                            icon: "success"
+                                        });
+                                        navigate(location?.state ? location.state : '/');
+                                        reset();
+                                    }
+                                })
                         }
                     })
             })
@@ -67,11 +77,21 @@ const SignUp = () => {
         gitHubLogin()
             .then(res => {
                 console.log(res.user);
-                Swal.fire({
-                    title: "Success",
-                    text: "Logged in with GitHub successfully",
-                    icon: "success"
-                });
+                const userInfo = {
+                    fullName: res.user.displayName,
+                    email: res.user.email
+                }
+
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: "Success",
+                            text: "Logged in with GitHub successfully",
+                            icon: "success"
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
             })
             .catch(error => {
                 console.error(error);
@@ -86,12 +106,21 @@ const SignUp = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(res => {
-                console.log(res.user);
-                Swal.fire({
-                    title: "Success",
-                    text: "Logged in with Google successfully",
-                    icon: "success"
-                });
+                const userInfo = {
+                    fullName: res.user.displayName,
+                    email: res.user.email
+                }
+
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: "Success",
+                            text: "Logged in with Google successfully",
+                            icon: "success"
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
             })
             .catch(error => {
                 console.error(error);
