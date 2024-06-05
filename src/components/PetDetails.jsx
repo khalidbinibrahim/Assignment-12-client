@@ -1,28 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import AdoptModal from "./AdoptModal";
 import { IoMdTime } from "react-icons/io";
 import { CiCalendar, CiLocationOn } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PetDetails = () => {
     const { id } = useParams();
     const [pet, setPet] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const token = localStorage.getItem('token');
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         const fetchPet = async () => {
-            const res = await axios.get(`http://localhost:5000/pets/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+            const res = await axiosSecure.get(`/pets/${id}`);
             setPet(res.data);
         };
         fetchPet();
-    }, [id, token]);
+    }, [id, axiosSecure]);
 
     const handleAdoptClick = () => {
         setIsModalOpen(true);

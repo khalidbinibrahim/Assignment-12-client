@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const AdoptModal = ({ pet, onClose }) => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const { user } = useContext(AuthContext);
-    const token = localStorage.getItem('token');
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,11 +24,7 @@ const AdoptModal = ({ pet, onClose }) => {
         console.log(adoptionData);
 
         try {
-            const res = await axios.post('http://localhost:5000/adoptions', adoptionData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+            const res = await axiosSecure.post('/adoptions', adoptionData);
             const data = res.data;
             console.log(data);
             if (res.data.insertedId) {
