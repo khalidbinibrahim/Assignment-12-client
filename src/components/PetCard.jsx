@@ -22,7 +22,7 @@ const PetCard = ({ pet }) => {
 
           <div className="mb-6">
             <p className="text-[#6C6B6B] font-normal flex items-center gap-3 mb-2"><CiLocationOn className="text-2xl" />Location: {pet?.petLocation}</p>
-            <p className="text-[#6C6B6B] font-normal flex items-center gap-3 mb-2"><CiCalendar className="text-2xl" />Birth: {pet?.dateAdded}</p>
+            <p className="text-[#6C6B6B] font-normal flex items-center gap-3 mb-2"><CiCalendar className="text-2xl" />Birth: {new Date(pet.dateAdded).toLocaleDateString()}</p>
             <p className="text-[#6C6B6B] font-normal flex items-center gap-3"><IoMdTime className="text-2xl" />Age: {pet?.petAge}</p>
           </div>
 

@@ -13,8 +13,8 @@ const AdoptModal = ({ pet, onClose }) => {
         e.preventDefault();
         const adoptionData = {
             petId: pet._id,
-            petName: pet.name,
-            petImage: pet.image,
+            petName: pet.petName,
+            petImage: pet.petImage,
             phone,
             address,
             userName: user?.displayName || 'John Doe',
