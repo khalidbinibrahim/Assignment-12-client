@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/add_pet",
-                element: <AddPet />
+                element: <PrivateRoute><AddPet /></PrivateRoute>
             }
         ]
     }
