@@ -35,8 +35,8 @@ const PetListing = () => {
         pages
             .flatMap(page => page.pets)
             .filter(pet =>
-                pet.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-                (category ? pet.category === category : true)
+                pet.petName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                (category ? pet.petCategory === category : true)
             );
 
     return (
