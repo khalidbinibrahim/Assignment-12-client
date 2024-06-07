@@ -62,23 +62,23 @@ const CreateDonationCampaign = () => {
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                 <div className="mb-4">
                     <label htmlFor="petPicture" className="block font-medium mb-1">Pet Picture</label>
-                    <input type="file" id="petPicture" onChange={handleImageUpload} className="w-full" accept="image/*" required />
+                    <input type="file" id="petPicture" onChange={handleImageUpload} className="w-full border border-gray-300 rounded p-2" accept="image/*" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="maxDonationAmount" className="block font-medium mb-1">Maximum Donation Amount</label>
-                    <input type="number" id="maxDonationAmount" value={maxDonationAmount} onChange={(e) => setMaxDonationAmount(e.target.value)} className="w-full" required />
+                    <input type="number" id="maxDonationAmount" value={maxDonationAmount} onChange={(e) => setMaxDonationAmount(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="lastDateOfDonation" className="block font-medium mb-1">Last Date of Donation</label>
-                    <input type="date" id="lastDateOfDonation" value={lastDateOfDonation} onChange={(e) => setLastDateOfDonation(e.target.value)} className="w-full" required />
+                    <input type="date" id="lastDateOfDonation" value={lastDateOfDonation} onChange={(e) => setLastDateOfDonation(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="shortDescription" className="block font-medium mb-1">Short Description</label>
-                    <textarea id="shortDescription" value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} className="w-full" required />
+                    <input id="shortDescription" type='text' value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="longDescription" className="block font-medium mb-1">Long Description</label>
-                    <textarea id="longDescription" value={longDescription} onChange={(e) => setLongDescription(e.target.value)} className="w-full" required />
+                    <textarea id="longDescription" value={longDescription} onChange={(e) => setLongDescription(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
                 </div>
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" disabled={loading}>Submit</button>
             </form>

@@ -87,19 +87,19 @@ const AddedPets = () => {
                     <div className="space-x-2">
                         <button
                             onClick={() => navigate(`/update_pet/${value}`)}
-                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            className="hover:bg-blue-500 bg-white border border-blue-500 text-blue-500 hover:text-white px-4 py-2 rounded"
                         >
                             Update
                         </button>
                         <button
                             onClick={() => handleDelete(value)}
-                            className="bg-red-500 text-white px-4 py-2 rounded"
+                            className="hover:bg-red-500 bg-white border border-red-500 text-red-500 hover:text-white px-4 py-2 rounded"
                         >
                             Delete
                         </button>
                         <button
                             onClick={() => handleAdopt(value)}
-                            className="bg-green-500 text-white px-4 py-2 rounded"
+                            className="hover:bg-green-500 bg-white border border-green-500 text-green-500 hover:text-white px-4 py-2 rounded"
                         >
                             Adopted
                         </button>
