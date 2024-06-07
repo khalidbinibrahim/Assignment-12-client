@@ -145,11 +145,12 @@ const AddedPets = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <span className="loading loading-infinity loading-lg mx-auto flex justify-center my-20"></span>;
     }
 
     return (
-        <div className="p-8">
+        <div className="mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
+            <h1 className="text-2xl font-bold mb-6 text-center">My Added Pets</h1>
             <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     {headerGroups.map((headerGroup) => (
