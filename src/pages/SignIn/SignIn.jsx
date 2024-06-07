@@ -25,7 +25,8 @@ const SignIn = () => {
                 const verifyUser = { email };
                 const user = {
                     fullName: res.user.displayName,
-                    email
+                    email,
+                    role: 'user'
                 }
 
                 axios.post('http://localhost:5000/users', user)
@@ -69,7 +70,8 @@ const SignIn = () => {
                 console.log(res.user);
                 const userInfo = {
                     fullName: res.user.displayName,
-                    email: res.user.email
+                    email: res.user.email,
+                    role: 'user'
                 }
 
                 axios.post('http://localhost:5000/users', userInfo)
@@ -98,7 +100,8 @@ const SignIn = () => {
             .then(res => {
                 const userInfo = {
                     fullName: res.user.displayName,
-                    email: res.user.email
+                    email: res.user.email,
+                    role: 'user'
                 }
 
                 axios.post('http://localhost:5000/users', userInfo)

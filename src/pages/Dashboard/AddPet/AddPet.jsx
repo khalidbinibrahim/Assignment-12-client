@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Select from 'react-select';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const petCategories = [
     { value: 'dog', label: 'Dog' },
@@ -17,6 +18,7 @@ const AddPet = () => {
     const [imageURL, setImageURL] = useState('');
     const [uploading, setUploading] = useState(false);
     const axiosSecure = useAxiosSecure();
+    const { user } = useContext(AuthContext);
 
     const handleImageUpload = async (file) => {
         const formData = new FormData();
@@ -66,11 +68,13 @@ const AddPet = () => {
                         petImage: imageURL,
                         dateAdded: new Date().toISOString(),
                         adopted: false,
+                        userEmail: user?.email
                     };
 
                     try {
                         const res = await axiosSecure.post('/pets', petData);
                         const data = res.data;
+                        console.log(data);
                         if (data.insertedId) {
                             Swal.fire({
                                 title: "Success",

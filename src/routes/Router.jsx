@@ -10,6 +10,7 @@ import PetDetails from "../components/PetDetails";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import AddPet from "../pages/Dashboard/AddPet/AddPet";
+import AddedPets from "../pages/Dashboard/AddedPets/AddedPets";
 
 const router = createBrowserRouter([
     {
@@ -51,11 +52,16 @@ const router = createBrowserRouter([
 
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/add_pet",
                 element: <PrivateRoute><AddPet /></PrivateRoute>
+            },
+
+            {
+                path: "/dashboard/my_added_pets",
+                element: <PrivateRoute><AddedPets /></PrivateRoute>
             }
         ]
     }
