@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const CreateDonationCampaign = () => {
+    const [petName, setPetName] = useState('');
     const [petPicture, setPetPicture] = useState(null);
     const [maxDonationAmount, setMaxDonationAmount] = useState('');
     const [lastDateOfDonation, setLastDateOfDonation] = useState('');
@@ -29,6 +30,7 @@ const CreateDonationCampaign = () => {
 
         try {
             const response = await axiosSecure.post('/donation_campaigns', {
+                petName,
                 petPicture,
                 maxDonationAmount,
                 lastDateOfDonation,
@@ -43,6 +45,7 @@ const CreateDonationCampaign = () => {
                     text: "Your donation campaign has been successfully created",
                     icon: "success"
                 });
+                setPetName('');
                 setPetPicture(null);
                 setMaxDonationAmount('');
                 setLastDateOfDonation('');
@@ -60,6 +63,10 @@ const CreateDonationCampaign = () => {
         <div className="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
             <h1 className="text-2xl font-bold mb-6 text-center">Create Donation Campaign</h1>
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+                <div className="mb-4">
+                    <label htmlFor="petName" className="block font-medium mb-1">Pet Name</label>
+                    <input type="text" id="petName" value={petName} onChange={(e) => setPetName(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
+                </div>
                 <div className="mb-4">
                     <label htmlFor="petPicture" className="block font-medium mb-1">Pet Picture</label>
                     <input type="file" id="petPicture" onChange={handleImageUpload} className="w-full border border-gray-300 rounded p-2" accept="image/*" required />

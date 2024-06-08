@@ -40,7 +40,7 @@ const AdminUsers = () => {
             const data = res.data;
             console.log(data);
             setUsers(users.filter(user => user._id !== userId));
-            Swal.fire('Success', 'User deleted successfully', 'success');
+            Swal.fire('Success', 'User banned successfully', 'success');
         } catch (error) {
             setError(error.message);
         }
@@ -51,7 +51,7 @@ const AdminUsers = () => {
 
     return (
         <div className="mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
-            <h1 className="text-2xl font-bold mb-6 text-center">My Added Pets</h1>
+            <h1 className="text-2xl font-bold mb-6 text-center">Admin Users</h1>
             <table className="w-full border-collapse">
                 <thead>
                     <tr className='bg-gray-50'>

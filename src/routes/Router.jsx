@@ -15,6 +15,7 @@ import CreateDonationCampaign from "../pages/Dashboard/CreateDonationCampaign/Cr
 import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
 import AdminRoute from "./AdminRoute";
 import AdminUsers from "../pages/Dashboard/Admin/AdminUsers/AdminUsers";
+import MyDonationCampaigns from "../pages/Dashboard/MyDonationCampaigns/MyDonationCampaigns";
 
 const router = createBrowserRouter([
     {
@@ -76,6 +77,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/adoption_request",
                 element: <PrivateRoute><AdoptionRequest /></PrivateRoute>
+            },
+
+            {
+                path: "/dashboard/my_donation_campaigns",
+                element: <PrivateRoute><MyDonationCampaigns /></PrivateRoute>
             },
 
             // Admin-specific routes

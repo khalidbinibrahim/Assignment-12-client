@@ -39,10 +39,10 @@ const DonationCampaigns = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {campaigns.map((campaign) => (
                         <div key={campaign._id} className="border p-4 rounded shadow">
-                            <img src={campaign.image} alt={campaign.petName} className="w-full h-48 object-cover rounded" />
+                            <img src={campaign.petPicture} alt={campaign.petName} className="w-full h-48 object-cover rounded" />
                             <h2 className="text-2xl font-semibold mt-4">{campaign.petName}</h2>
-                            <p className="text-gray-600">Max Donation: ${campaign.maxDonation}</p>
-                            <p className="text-gray-600">Donated Amount: ${campaign.donatedAmount}</p>
+                            <p className="text-gray-600">Max Donation: ${campaign.maxDonationAmount}</p>
+                            <p className="text-gray-600">Donated Amount: ${campaign.lastDateOfDonation}</p>
                             <button className="btn mt-4 hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
                                 View Details
                             </button>
