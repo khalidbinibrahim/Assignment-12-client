@@ -3,6 +3,7 @@ import { usePagination, useSortBy, useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useAuth } from '../../../providers/AuthProvider';
 
 const AddedPets = () => {
     const [pets, setPets] = useState([]);
@@ -10,12 +11,15 @@ const AddedPets = () => {
     const [loading, setLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const { user, loading: authLoading } = useAuth();
 
     useEffect(() => {
+        if (authLoading) return;
+
         const fetchPets = async () => {
+            setLoading(true);
             try {
-                const response = await axiosSecure.get('/pets');
-                console.log('Fetched pets data:', response.data);
+                const response = await axiosSecure.get('/user_pets');
                 setPets(Array.isArray(response.data.pets) ? response.data.pets : []);
             } catch (error) {
                 console.error('Error fetching pets', error);
@@ -24,8 +28,11 @@ const AddedPets = () => {
                 setLoading(false);
             }
         };
-        fetchPets();
-    }, [axiosSecure]);
+
+        if (user) {
+            fetchPets();
+        }
+    }, [axiosSecure, user, authLoading]);
 
     const handleDelete = async (petId) => {
         try {
@@ -110,10 +117,7 @@ const AddedPets = () => {
         [navigate]
     );
 
-    const data = useMemo(() => {
-        console.log('Pets data:', pets);
-        return pets;
-    }, [pets]);
+    const data = useMemo(() => pets, [pets]);
 
     const {
         getTableProps,
@@ -144,7 +148,7 @@ const AddedPets = () => {
         setTablePageSize(size);
     };
 
-    if (loading) {
+    if (loading || authLoading) {
         return <span className="loading loading-infinity loading-lg mx-auto flex justify-center my-20"></span>;
     }
 
@@ -192,47 +196,30 @@ const AddedPets = () => {
                     })}
                 </tbody>
             </table>
-            <div className="flex justify-between mt-4">
-                <button
-                    onClick={() => gotoPage(0)}
-                    disabled={!canPreviousPage}
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-                >
-                    {'<<'}
-                </button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-                >
-                    {'<'}
-                </button>
-                <span className="text-sm text-gray-700">
-                    Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{' '}
+            <div className="pagination flex justify-between mt-4">
+                <div className="flex items-center space-x-2">
+                    <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="pagination-btn">
+                        {'<<'}
+                    </button>
+                    <button onClick={previousPage} disabled={!canPreviousPage} className="pagination-btn">
+                        {'<'}
+                    </button>
+                    <button onClick={nextPage} disabled={!canNextPage} className="pagination-btn">
+                        {'>'}
+                    </button>
+                    <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="pagination-btn">
+                        {'>>'}
+                    </button>
+                </div>
+                <span className="text-sm">
+                    Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
                 </span>
-                <button
-                    onClick={() => nextPage()}
-                    disabled={!canNextPage}
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-                >
-                    {'>'}
-                </button>
-                <button
-                    onClick={() => gotoPage(pageOptions.length - 1)}
-                    disabled={!canNextPage}
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-                >
-                    {'>>'}
-                </button>
                 <select
                     value={pageSize}
                     onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+                    className="form-select"
                 >
-                    {[10, 20, 30, 40, 50].map(size => (
+                    {[10, 20, 30, 40, 50].map((size) => (
                         <option key={size} value={size}>
                             Show {size}
                         </option>
