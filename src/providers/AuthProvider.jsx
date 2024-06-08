@@ -1,12 +1,14 @@
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic();
 
     const gitHubProvider = new GithubAuthProvider();
     const googleProvider = new GoogleAuthProvider();
@@ -44,24 +46,32 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log('user in the auth state changed', currentUser);
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
             if (currentUser) {
-                currentUser.getIdToken().then((token) => {
-                    setUser({
-                        ...currentUser,
-                        token,
-                    });
-                });
-            } else {
-                setUser(null);
+                // get token and store client
+                const userInfo = {
+                    fullName: currentUser.displayName,
+                    email: currentUser.email
+                };
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('token', res.data.token);
+                            setLoading(false);
+                        }
+                    })
             }
-            setLoading(false);
+            else {
+                localStorage.removeItem('token');
+                setLoading(false);
+            }
+
         });
         return () => {
-            unSubscribe();
-        };
-    }, []);
+            return unsubscribe();
+        }
+    }, [axiosPublic])
 
     const info = {
         user,

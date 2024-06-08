@@ -13,6 +13,8 @@ import AddPet from "../pages/Dashboard/AddPet/AddPet";
 import AddedPets from "../pages/Dashboard/AddedPets/AddedPets";
 import CreateDonationCampaign from "../pages/Dashboard/CreateDonationCampaign/CreateDonationCampaign"
 import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
+import AdminRoute from "./AdminRoute";
+import AdminUsers from "../pages/Dashboard/Admin/AdminUsers/AdminUsers";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home />
             },
-            
+
             {
                 path: '/signin',
                 element: <SignIn />
@@ -74,6 +76,12 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/adoption_request",
                 element: <PrivateRoute><AdoptionRequest /></PrivateRoute>
+            },
+
+            // Admin-specific routes
+            {
+                path: "/dashboard/admin/users",
+                element: <AdminRoute><AdminUsers /></AdminRoute>
             }
         ]
     }
