@@ -26,7 +26,8 @@ const Dashboard = () => {
                         {isAdmin && (
                             <>
                                 <hr />
-                                <li className="mb-6 mt-6"><NavLink to="/dashboard/admin/users" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">Admin Users</NavLink></li>
+                                <li className="mb-3 mt-6"><NavLink to="/dashboard/admin/users" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">Admin Users</NavLink></li>
+                                <li className="mb-6"><NavLink to="/dashboard/admin/all_pets" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">All Pets</NavLink></li>
                             </>
                         )}
                     </ul>

@@ -19,6 +19,7 @@ import AdminUsers from "../pages/Dashboard/Admin/AdminUsers/AdminUsers";
 import MyDonationCampaigns from "../pages/Dashboard/MyDonationCampaigns/MyDonationCampaigns";
 import CampaignDetails from "../components/CampaignDetails";
 import MyDonations from "../pages/Dashboard/MyDonations/MyDonations";
+import AllPets from "../pages/Dashboard/Admin/AllPets/AllPets";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +107,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/admin/users",
                 element: <AdminRoute><AdminUsers /></AdminRoute>
+            },
+
+            {
+                path: "/dashboard/admin/all_pets",
+                element: <AdminRoute><AllPets /></AdminRoute>
             }
         ]
     }
