@@ -16,6 +16,7 @@ import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest"
 import AdminRoute from "./AdminRoute";
 import AdminUsers from "../pages/Dashboard/Admin/AdminUsers/AdminUsers";
 import MyDonationCampaigns from "../pages/Dashboard/MyDonationCampaigns/MyDonationCampaigns";
+import CampaignDetails from "../components/CampaignDetails";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
             {
                 path: '/donation_campaigns',
                 element: <DonationCampaigns />
+            },
+
+            {
+                path: '/campaigns/:id',
+                element: <PrivateRoute><CampaignDetails /></PrivateRoute>
             }
         ]
     },

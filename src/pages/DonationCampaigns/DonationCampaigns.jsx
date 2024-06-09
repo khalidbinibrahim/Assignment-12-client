@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const DonationCampaigns = () => {
     const [campaigns, setCampaigns] = useState([]);
@@ -8,6 +9,7 @@ const DonationCampaigns = () => {
     const [page, setPage] = useState(1);
     const campaignsPerPage = 9;
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchCampaigns();
@@ -24,6 +26,10 @@ const DonationCampaigns = () => {
         } catch (error) {
             console.error('Error fetching campaigns:', error);
         }
+    };
+
+    const handleViewDetails = (campaignId) => {
+        navigate(`/campaigns/${campaignId}`);
     };
 
     return (
@@ -43,7 +49,7 @@ const DonationCampaigns = () => {
                             <h2 className="text-2xl font-semibold mt-4">{campaign.petName}</h2>
                             <p className="text-gray-600">Max Donation: ${campaign.maxDonationAmount}</p>
                             <p className="text-gray-600">Donated Amount: ${campaign.lastDateOfDonation}</p>
-                            <button className="btn mt-4 hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
+                            <button onClick={() => handleViewDetails(campaign._id)} className="btn mt-4 hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
                                 View Details
                             </button>
                         </div>
