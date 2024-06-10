@@ -29,7 +29,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="mt-8 border-t border-gray-600 pt-4 font-montserrat text-center text-[#3B3A3A]">
-                <p>&copy; {new Date().getFullYear()} PETCO`. All rights reserved.</p>
+                <p>Copyright &copy; {new Date().getFullYear()} - All right reserved by PETCO`.</p>
             </div>
         </div>
     );
