@@ -15,7 +15,7 @@ const MyDonationCampaigns = () => {
     useEffect(() => {
         const fetchDonations = async () => {
             try {
-                const response = await axiosSecure.get('/user_donations');
+                const response = await axiosSecure.get('/user_campaigns');
                 setDonations(response.data.campaigns);
             } catch (error) {
                 setError(error.message);

@@ -87,7 +87,7 @@ const CreateDonationCampaign = () => {
                     <label htmlFor="longDescription" className="block font-medium mb-1">Long Description</label>
                     <textarea id="longDescription" value={longDescription} onChange={(e) => setLongDescription(e.target.value)} className="w-full border border-gray-300 rounded p-2" required />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" disabled={loading}>Submit</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" disabled={loading}>Submit</button>
             </form>
         </div>
     );

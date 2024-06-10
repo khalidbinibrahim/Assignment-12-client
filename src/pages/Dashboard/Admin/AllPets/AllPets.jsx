@@ -42,19 +42,19 @@ const AllPets = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-6">All Pets</h1>
+        <div className="mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
+            <h1 className="text-2xl font-bold mb-6 text-center">All Pets</h1>
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                <table className="min-w-full bg-white border rounded-lg shadow-md">
                     <thead className="bg-gray-50">
                         <tr>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Pet Image</th>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Pet Name</th>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Pet Age</th>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Pet Category</th>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Pet Location</th>
-                            <th className="py-2 px-4 text-left text-gray-700 font-medium">Status</th>
-                            {isAdmin && <th className="py-2 px-4 text-left text-gray-700 font-medium">Actions</th>}
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Image</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Name</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Age</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Category</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Location</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            {isAdmin && <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>}
                         </tr>
                     </thead>
                     <tbody>

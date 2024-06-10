@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex font-sourceSans3">
-            <div className="w-72 h-full bg-[#07332F] flex justify-center flex-col items-center py-8 px-2">
+            <div className="w-72 min-h-full bg-[#07332F] flex justify-center flex-col items-center px-2">
                 <div className="flex gap-4 items-center text-3xl mb-6">
                     <img className="w-16 h-16 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGOLHOTFPFlHnHAmFfe8_Z-ZeFDfWgnJhBgA&s" alt="Logo" />
                     <h1 className="text-[#F7A582] text-3xl font-bold font-sourceSans3">PET<span className="text-white">CO`</span></h1>
@@ -27,7 +27,8 @@ const Dashboard = () => {
                             <>
                                 <hr />
                                 <li className="mb-3 mt-6"><NavLink to="/dashboard/admin/users" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">Admin Users</NavLink></li>
-                                <li className="mb-6"><NavLink to="/dashboard/admin/all_pets" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">All Pets</NavLink></li>
+                                <li className="mb-3"><NavLink to="/dashboard/admin/all_pets" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">All Pets</NavLink></li>
+                                <li className="mb-6"><NavLink to="/dashboard/admin/all_donations" className="text-[#F3F3F3] hover:text-[#F7A582] focus:text-[#F7A582] focus:font-medium font-semibold text-xl py-2 px-3">All Donations</NavLink></li>
                             </>
                         )}
                     </ul>
