@@ -74,7 +74,7 @@ const AddPet = () => {
                     try {
                         const res = await axiosSecure.post('/pets', petData);
                         const data = res.data;
-                        console.log(data);
+                        // console.log(data);
                         if (data.insertedId) {
                             Swal.fire({
                                 title: "Success",

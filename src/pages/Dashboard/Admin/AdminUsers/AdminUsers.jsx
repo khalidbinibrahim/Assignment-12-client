@@ -38,7 +38,7 @@ const AdminUsers = () => {
             await axiosSecure.patch(`/admin/ban_user/${userId}`);
             const res = await axiosSecure.delete(`/admin/delete_user/${userId}`);
             const data = res.data;
-            console.log(data);
+            // console.log(data);
             setUsers(users.filter(user => user._id !== userId));
             Swal.fire('Success', 'User banned successfully', 'success');
         } catch (error) {

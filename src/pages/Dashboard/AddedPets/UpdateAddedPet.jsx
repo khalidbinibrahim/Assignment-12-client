@@ -17,7 +17,7 @@ const UpdateAddedPet = () => {
             try {
                 const response = await axiosSecure.get(`/pets/${petId}`);
                 setPet(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             } catch (error) {
                 console.error('Error fetching pet details', error);
                 Swal.fire('Error', 'Failed to fetch pet details', 'error');
@@ -35,7 +35,7 @@ const UpdateAddedPet = () => {
         event.preventDefault();
         try {
             const res = await axiosSecure.patch(`/update_pets/${petId}`, pet);
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.message) {
                 Swal.fire('Updated!', 'The pet details have been updated.', 'success');
             }

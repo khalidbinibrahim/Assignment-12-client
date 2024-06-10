@@ -5,7 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 const fetchPets = async ({ pageParam = 1 }) => {
-    const res = await axios.get(`http://localhost:5000/pets?page=${pageParam}`);
+    const res = await axios.get(`https://assignment-12-server-mu-fawn.vercel.app/pets?page=${pageParam}`);
     return res.data;
 };
 

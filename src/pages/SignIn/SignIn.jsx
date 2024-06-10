@@ -21,7 +21,7 @@ const SignIn = () => {
         signInUser(email, password)
             .then(res => {
                 const loggedUser = res.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 const verifyUser = { email };
                 const user = {
                     fullName: res.user.displayName,
@@ -29,19 +29,19 @@ const SignIn = () => {
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', user)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', user)
                     .then(res => {
-                        console.log(res.data);
-                        axios.post('http://localhost:5000/jwt', verifyUser, { withCredentials: true })
+                        // console.log(res.data);
+                        axios.post('https://assignment-12-server-mu-fawn.vercel.app/jwt', verifyUser, { withCredentials: true })
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 const token = res.data.token;
                                 localStorage.setItem('token', token);
-                                console.log('JWT stored in local storage:', token);
+                                // console.log('JWT stored in local storage:', token);
                                 if (res.data.message) {
                                     Swal.fire({
                                         title: "Success",
-                                        text: "User Created Successfully",
+                                        text: "User Sign In Successfully",
                                         icon: "success"
                                     });
                                     navigate(location?.state ? location.state : '/');
@@ -55,7 +55,7 @@ const SignIn = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Error to create User"
+                    text: "Error to sign in User"
                 });
             })
     }
@@ -67,16 +67,16 @@ const SignIn = () => {
     const handleGithubLogin = () => {
         gitHubLogin()
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 const userInfo = {
                     fullName: res.user.displayName,
                     email: res.user.email,
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', userInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         Swal.fire({
                             title: "Success",
                             text: "Logged in with GitHub successfully",
@@ -104,9 +104,9 @@ const SignIn = () => {
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', userInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         Swal.fire({
                             title: "Success",
                             text: "Logged in with Google successfully",

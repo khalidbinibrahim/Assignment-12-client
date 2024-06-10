@@ -34,7 +34,7 @@ const CheckOutForm = ({ onClose, donationId }) => {
                 paymentMethodId: paymentMethod.id,
             });
             const data = res.data;
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 Swal.fire('Success', 'Your payment successfully done', 'success');
             }

@@ -17,19 +17,19 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         const fullName = data.fullName;
         const email = data.email;
         const PhotoUrl = data.PhotoUrl;
         const password = data.password;
-        console.log(fullName, email, PhotoUrl);
+        // console.log(fullName, email, PhotoUrl);
 
         createUser(email, password)
             .then(res => {
                 res.user.photoURL = PhotoUrl;
                 res.user.displayName = fullName;
                 const loggedUser = res.user;
-                console.log(loggedUser);
+                // console.log(loggedUser);
                 const verifyUser = { email };
                 const user = {
                     fullName,
@@ -37,16 +37,16 @@ const SignUp = () => {
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', user)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', user)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.insertedId) {
-                            axios.post('http://localhost:5000/jwt', verifyUser, { withCredentials: true })
+                            axios.post('https://assignment-12-server-mu-fawn.vercel.app/jwt', verifyUser, { withCredentials: true })
                                 .then(res => {
-                                    console.log(res.data);
+                                    // console.log(res.data);
                                     const token = res.data.token;
                                     localStorage.setItem('token', token);
-                                    console.log('JWT stored in local storage:', token);
+                                    // console.log('JWT stored in local storage:', token);
                                     if (res.data.message) {
                                         Swal.fire({
                                             title: "Success",
@@ -77,16 +77,16 @@ const SignUp = () => {
     const handleGithubLogin = () => {
         gitHubLogin()
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 const userInfo = {
                     fullName: res.user.displayName,
                     email: res.user.email,
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', userInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         Swal.fire({
                             title: "Success",
                             text: "Logged in with GitHub successfully",
@@ -114,9 +114,9 @@ const SignUp = () => {
                     role: 'user'
                 }
 
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://assignment-12-server-mu-fawn.vercel.app/users', userInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         Swal.fire({
                             title: "Success",
                             text: "Logged in with Google successfully",

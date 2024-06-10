@@ -17,16 +17,17 @@ const AdoptModal = ({ pet, onClose }) => {
             petImage: pet.petImage,
             phone,
             address,
+            status: 'pending',
             userName: user?.displayName || 'John Doe',
             email: user?.email,
         };
 
-        console.log(adoptionData);
+        // console.log(adoptionData);
 
         try {
             const res = await axiosSecure.post('/adoptions', adoptionData);
             const data = res.data;
-            console.log(data);
+            // console.log(data);
             if (res.data.insertedId) {
                 Swal.fire({
                     title: "Success",

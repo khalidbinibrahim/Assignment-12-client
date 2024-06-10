@@ -24,9 +24,9 @@ const AdoptionRequest = () => {
         fetchRequests();
     }, [axiosSecure]);
 
-    const handleUpdateRequest = async (requestId, status) => {
+    const handleUpdateRequest = async (requestId, status, petId) => {
         try {
-            await axiosSecure.patch(`/adoption_requests/${requestId}`, { status });
+            await axiosSecure.patch(`/adoption_requests/${requestId}?petId=${petId}`, { status });
             setRequests((prevRequests) =>
                 prevRequests.map((req) => (req._id === requestId ? { ...req, status } : req))
             );
@@ -42,27 +42,27 @@ const AdoptionRequest = () => {
     }
 
     return (
-        <div className="mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
+        <div className="p-8 mx-auto bg-white shadow-lg rounded-lg font-sourceSans3">
             <h1 className="text-2xl font-bold mb-6 text-center">Adoption Requests</h1>
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Pet Name
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Requester Name
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Email
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Phone Number
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Location
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                             Status
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -70,15 +70,15 @@ const AdoptionRequest = () => {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="w-1/2 bg-white divide-y divide-gray-200">
                     {requests.map((request) => (
                         <tr key={request._id}>
-                            <td className="px-6 py-4 whitespace-nowrap">{request.petName}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{request.userName}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{request.email}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{request.phone}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">{request.address}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td className="px-6 py-4">{request.petName}</td>
+                            <td className="px-6 py-4">{request.userName}</td>
+                            <td className="px-6 py-4">{request.email}</td>
+                            <td className="px-6 py-4">{request.phone}</td>
+                            <td className="px-6 py-4">{request.address}</td>
+                            <td className="px-6 py-4">
                                 {request.status ? (
                                     <span className={`px-4 py-2 rounded ${request.status === 'accepted' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                                         {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
@@ -91,14 +91,14 @@ const AdoptionRequest = () => {
                                 {request.status === 'pending' && (
                                     <div className="space-x-2">
                                         <button
-                                            onClick={() => handleUpdateRequest(request._id, 'accepted')}
-                                            className="bg-green-500 text-white px-4 py-2 rounded"
+                                            onClick={() => handleUpdateRequest(request._id, 'accepted', request.petId)}
+                                            className="px-4 py-2 rounded bg-white hover:bg-green-500 border border-green-500 text-green-500 hover:text-white"
                                         >
                                             Accept
                                         </button>
                                         <button
-                                            onClick={() => handleUpdateRequest(request._id, 'rejected')}
-                                            className="bg-red-500 text-white px-4 py-2 rounded"
+                                            onClick={() => handleUpdateRequest(request._id, 'rejected', request.petId)}
+                                            className="px-4 py-2 rounded bg-white hover:bg-red-500 border border-red-500 text-red-500 hover:text-white"
                                         >
                                             Reject
                                         </button>
