@@ -5,6 +5,7 @@ import { MdPets } from "react-icons/md";
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -16,7 +17,7 @@ const Header = () => {
                         <div>
                             <Fade direction="down" triggerOnce={true}><h1 className="font-sourceSans3 mb-5 text-7xl font-semibold text-white">Best Friend with <br /> Happy Time</h1></Fade>
                             <p className="font-sourceSans3 text-[#F3F3F3] font-medium text-lg mb-7">Human Shampoo on Dogs After six days of delirat, the <br /> jury found Hernandez guilty of first-degree murder</p>
-                            <Fade direction="up" triggerOnce={true}><button to="/add_tourists_spot" className="btn bg-[#F7A582] border-none text-white font-semibold text-base font-sourceSans3 rounded-md px-7">View More <i className='text-xl'><MdPets /></i></button></Fade>
+                            <Fade direction="up" triggerOnce={true}><NavLink to="/pet_listing" className="btn bg-[#F7A582] border-none text-white font-semibold text-base font-sourceSans3 rounded-md px-7">View More <i className='text-xl'><MdPets /></i></NavLink></Fade>
                         </div>
 
                         <div className="w-[270px] font-sourceSans3">
