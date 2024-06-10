@@ -48,20 +48,27 @@ const CampaignDetails = () => {
     };
 
     if (!campaign) {
-        return <p>Loading...</p>;
+        return <span className="loading loading-infinity loading-lg mx-auto flex justify-center my-20"></span>;
     }
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Donation Details</h1>
-            <p className="text-xl mb-2">Campaign: {campaign.petName}</p>
-            <p className="text-xl mb-4">Amount: ${campaign.maxDonationAmount}</p>
-            <button
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                onClick={handleDonateNow}
-            >
-                Donate Now
-            </button>
+        <div className="container mx-auto p-4 font-sourceSans3 py-24">
+            <div className="bg-white shadow rounded-lg p-6">
+                <h1 className="text-3xl font-bold mb-4 text-center">Donation Details</h1>
+                <div className="text-center mb-6">
+                    <p className="text-2xl font-semibold">{campaign.petName}</p>
+                    <p className="text-xl text-gray-700">Amount: ${campaign.maxDonationAmount}</p>
+                </div>
+                <div className="text-center">
+                    <button
+                        className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7"
+                        onClick={handleDonateNow}
+                    >
+                        Donate Now
+                    </button>
+                </div>
+            </div>
+
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded shadow-lg max-w-md w-full relative">
@@ -78,16 +85,17 @@ const CampaignDetails = () => {
                     </div>
                 </div>
             )}
+
             <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-4">Recommended Donations</h2>
-                <ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {recommendedCampaigns.map((recommended) => (
-                        <li key={recommended.id} className="mb-2">
-                            <p className="text-xl">{recommended.name}</p>
+                        <div key={recommended.id} className="bg-white p-4 rounded-lg shadow">
+                            <p className="text-xl font-semibold">{recommended.name}</p>
                             <p className="text-gray-700">Goal: ${recommended.goal}</p>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );

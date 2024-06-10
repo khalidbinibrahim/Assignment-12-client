@@ -21,6 +21,7 @@ import CampaignDetails from "../components/CampaignDetails";
 import MyDonations from "../pages/Dashboard/MyDonations/MyDonations";
 import AllPets from "../pages/Dashboard/Admin/AllPets/AllPets";
 import AllDonations from "../pages/Dashboard/Admin/AllDonations/AllDonations";
+import EditDonationCampaign from "../pages/Dashboard/MyDonationCampaigns/EditDonationCampaign";
 
 const router = createBrowserRouter([
     {
@@ -97,6 +98,11 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my_donation_campaigns",
                 element: <PrivateRoute><MyDonationCampaigns /></PrivateRoute>
+            },
+
+            {
+                path: "/dashboard/edit_donation/:id",
+                element: <PrivateRoute><EditDonationCampaign /></PrivateRoute>
             },
 
             {

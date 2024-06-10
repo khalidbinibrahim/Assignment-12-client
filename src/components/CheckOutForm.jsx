@@ -35,7 +35,7 @@ const CheckOutForm = ({ onClose, donationId }) => {
             });
             const data = res.data;
             // console.log(data);
-            if(data.success) {
+            if (data.success) {
                 Swal.fire('Success', 'Your payment successfully done', 'success');
             }
 
@@ -47,22 +47,31 @@ const CheckOutForm = ({ onClose, donationId }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-lg">
+            <div className="mb-4">
+                <label className="block text-gray-700 font-bold mb-2">
                     Donation Amount:
                     <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
+                        className="mt-1 p-2 border border-gray-300 rounded w-full"
                     />
                 </label>
             </div>
-            <div>
-                <CardElement />
+            <div className="mb-4">
+                <CardElement className="p-2 border border-gray-300 rounded" />
             </div>
-            <button type="submit" disabled={!stripe}>Donate</button>
+            <div className="flex justify-end">
+                <button
+                    type="submit"
+                    disabled={!stripe}
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
+                >
+                    Donate
+                </button>
+            </div>
         </form>
     );
 };

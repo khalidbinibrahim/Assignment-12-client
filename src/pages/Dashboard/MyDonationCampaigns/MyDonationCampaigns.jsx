@@ -38,7 +38,7 @@ const MyDonationCampaigns = () => {
     };
 
     const handleEditDonation = (donationId) => {
-        navigate(`/edit_donation/${donationId}`);
+        navigate(`/dashboard/edit_donation/${donationId}`);
     };
 
     const handleViewDonators = async (donationId) => {
@@ -59,25 +59,17 @@ const MyDonationCampaigns = () => {
         <div className="mx-auto p-8 bg-white shadow-lg rounded-lg font-sourceSans3">
             <h1 className="text-2xl font-bold mb-6 text-center">My Donation Campaigns</h1>
             <table className="min-w-full divide-y divide-gray-200">
-                <thead className='bg-gray-50'>
+                <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Pet Name
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Max Donation Amount
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Donation Progress
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
-                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pet Name</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Max Donation Amount</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Donation Progress</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {donations.map(donation => (
-                        <tr key={donation._id}>
+                        <tr key={donation._id} className="bg-white even:bg-gray-50">
                             <td className="px-6 py-4 whitespace-nowrap">{donation.petName}</td>
                             <td className="px-6 py-4 whitespace-nowrap">{donation.maxDonationAmount}</td>
                             <td className="px-6 py-4 whitespace-nowrap">
@@ -85,21 +77,21 @@ const MyDonationCampaigns = () => {
                                     <div className="bg-blue-500 h-4 rounded-full" style={{ width: `${(donation.currentDonationAmount / donation.maxDonationAmount) * 100}%` }}></div>
                                 </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td className="px-6 py-4 whitespace-nowrap space-x-2">
                                 <button
-                                    className={`bg-${donation.paused ? 'green' : 'red'}-500 text-white py-1 px-2 rounded mr-2`}
+                                    className={`bg-white hover:bg-${donation.paused ? 'green' : 'red'}-500 border border-${donation.paused ? 'green' : 'red'}-500 text-${donation.paused ? 'green' : 'red'}-500 hover:text-white px-4 py-2 rounded`}
                                     onClick={() => handlePauseDonation(donation._id)}
                                 >
                                     {donation.paused ? 'Unpause' : 'Pause'}
                                 </button>
                                 <button
-                                    className="bg-yellow-500 text-white py-1 px-2 rounded mr-2"
+                                    className="hover:bg-yellow-500 bg-white border border-yellow-500 text-yellow-500 hover:text-white px-4 py-2 rounded"
                                     onClick={() => handleEditDonation(donation._id)}
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    className="bg-blue-500 text-white py-1 px-2 rounded"
+                                    className="hover:bg-blue-500 bg-white border border-blue-500 text-blue-500 hover:text-white px-4 py-2 rounded"
                                     onClick={() => handleViewDonators(donation._id)}
                                 >
                                     View Donators
@@ -111,8 +103,8 @@ const MyDonationCampaigns = () => {
             </table>
 
             {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-4 rounded">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-4 rounded shadow-lg w-full max-w-2xl">
                         <h2 className="text-xl font-bold mb-4">Donators</h2>
                         <button className="bg-red-500 text-white py-1 px-2 rounded mb-4" onClick={() => setShowModal(false)}>Close</button>
                         <table className="min-w-full bg-white border border-gray-200">
