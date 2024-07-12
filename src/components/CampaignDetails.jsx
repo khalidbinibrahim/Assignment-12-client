@@ -32,6 +32,7 @@ const CampaignDetails = () => {
             try {
                 const response = await axiosSecure.get('/recommended_campaigns');
                 setRecommendedCampaigns(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching recommended campaigns:', error);
             }
@@ -60,12 +61,18 @@ const CampaignDetails = () => {
                     <p className="text-xl text-gray-700">Amount: ${campaign.maxDonationAmount}</p>
                 </div>
                 <div className="text-center">
-                    <button
-                        className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7"
-                        onClick={handleDonateNow}
-                    >
-                        Donate Now
-                    </button>
+                    {
+                        campaign.paused === true ?
+                            <span className='px-4 py-2 rounded bg-red-100 text-red-800'>
+                                Paused
+                            </span>
+                            : <button
+                                className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7"
+                                onClick={handleDonateNow}
+                            >
+                                Donate Now
+                            </button>
+                    }
                 </div>
             </div>
 
@@ -90,9 +97,10 @@ const CampaignDetails = () => {
                 <h2 className="text-2xl font-bold mb-4">Recommended Donations</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {recommendedCampaigns.map((recommended) => (
-                        <div key={recommended.id} className="bg-white p-4 rounded-lg shadow">
-                            <p className="text-xl font-semibold">{recommended.name}</p>
-                            <p className="text-gray-700">Goal: ${recommended.goal}</p>
+                        <div key={recommended._id} className="bg-white p-4 rounded-lg shadow">
+                            <img src={recommended.petPicture} alt={recommended.petName} className='w-full h-60 mb-2 rounded-md' />
+                            <p className="text-2xl font-semibold">{recommended.petName}</p>
+                            <p className="text-gray-700">Goal: ${recommended.maxDonationAmount}</p>
                         </div>
                     ))}
                 </div>

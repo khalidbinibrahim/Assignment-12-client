@@ -14,10 +14,10 @@ const Footer = () => {
                 <nav>
                     <h4 className="font-bold text-[#0A0808] text-xl mb-3">Quick Links</h4>
                     <NavLink to="/" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Home</NavLink>
+                    <NavLink to="/signin" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Sign In</NavLink>
                     <NavLink to="/dashboard" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Dashboard</NavLink>
                     <NavLink to="/pet_listing" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Pet Listing</NavLink>
                     <NavLink to="/donation_campaigns" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Donation Campaigns</NavLink>
-                    <NavLink to="/signin" className="text-[#6C6B6B] hover:text-[#F7A582] font-semibold">Sign In</NavLink>
                 </nav>
                 <div className="mb-4 lg:mb-0 text-[#3B3A3A]">
                     <h2 className="text-lg font-bold mb-2">Stay Connected</h2>

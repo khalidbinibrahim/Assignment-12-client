@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home"
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import ErrorPage from "../pages/Error/ErrorPage"
 import PetListing from "../pages/PetListing/PetListing";
 import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp />
+            },
+
+            {
+                path: '/update_profile',
+                element: <UpdateProfile />
             },
 
             {
