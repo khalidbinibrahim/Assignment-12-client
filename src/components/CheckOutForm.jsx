@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
-const CheckOutForm = ({ onClose, donationId }) => {
+const CheckOutForm = ({ onClose, donationId, amountNeeded }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [amount, setAmount] = useState('');

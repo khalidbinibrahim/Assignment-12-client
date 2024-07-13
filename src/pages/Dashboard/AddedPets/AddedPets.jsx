@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useAuth } from '../../../providers/AuthProvider';
+import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 
 const AddedPets = () => {
     const [pets, setPets] = useState([]);
@@ -199,16 +200,16 @@ const AddedPets = () => {
             <div className="pagination flex justify-between mt-4">
                 <div className="flex items-center space-x-2">
                     <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="pagination-btn">
-                        {'<<'}
+                        {<MdKeyboardDoubleArrowLeft />}
                     </button>
                     <button onClick={previousPage} disabled={!canPreviousPage} className="pagination-btn">
-                        {'<'}
+                        {<MdKeyboardArrowLeft  />}
                     </button>
                     <button onClick={nextPage} disabled={!canNextPage} className="pagination-btn">
-                        {'>'}
+                        {<MdKeyboardArrowRight />}
                     </button>
                     <button onClick={() => gotoPage(pageOptions.length - 1)} disabled={!canNextPage} className="pagination-btn">
-                        {'>>'}
+                        {<MdKeyboardDoubleArrowRight />}
                     </button>
                 </div>
                 <span className="text-sm">

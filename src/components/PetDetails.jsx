@@ -66,9 +66,17 @@ const PetDetails = () => {
                                             <span className="flex items-center gap-2 text-gray-600 font-semibold mr-2"><MdPets className='text-2xl' /> Adopted:</span>
                                             <span className="text-gray-800 font-montserrat text-xl font-medium">{pet.adopted === false ? 'No' : 'Yes'}</span>
                                         </div>
-                                        <button onClick={handleAdoptClick} className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
-                                            Adopt
-                                        </button>
+                                        <div className="mt-6">
+                                            {
+                                                pet.adopted === true ?
+                                                    <span className='px-4 py-2 rounded bg-red-100 text-red-800'>
+                                                        Adopted
+                                                    </span> :
+                                                    <button onClick={handleAdoptClick} className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
+                                                        Adopt
+                                                    </button>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>

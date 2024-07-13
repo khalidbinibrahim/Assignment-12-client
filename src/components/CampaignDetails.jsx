@@ -55,10 +55,12 @@ const CampaignDetails = () => {
     return (
         <div className="container mx-auto p-4 font-sourceSans3 py-24">
             <div className="bg-white shadow rounded-lg p-6">
-                <h1 className="text-3xl font-bold mb-4 text-center">Donation Details</h1>
+                <h1 className="text-3xl font-bold mb-8 text-center">Donation Details</h1>
                 <div className="text-center mb-6">
-                    <p className="text-2xl font-semibold">{campaign.petName}</p>
-                    <p className="text-xl text-gray-700">Amount: ${campaign.maxDonationAmount}</p>
+                    <p className="text-2xl font-semibold text-[#3B3A3A] mb-4">{campaign.petName}</p>
+                    <p className="text-xl text-[#6C6B6B] mb-2">Max Donation Amount: ${campaign.maxDonationAmount}</p>
+                    <p className="text-xl text-[#6C6B6B] mb-2">Amount Needed: ${campaign.donated ? campaign.maxDonationAmount - campaign.donated / 100 : campaign.maxDonationAmount}</p>
+                    <p className="text-xl text-[#6C6B6B]">Donated Amount: ${campaign.donated ? campaign.donated / 100 : 0}</p>
                 </div>
                 <div className="text-center">
                     {
@@ -87,7 +89,7 @@ const CampaignDetails = () => {
                         </button>
                         <h2 className="text-2xl font-bold mb-4">Make a Donation</h2>
                         <Elements stripe={stripePromise}>
-                            <CheckOutForm onClose={handleCloseModal} donationId={campaign._id} />
+                            <CheckOutForm onClose={handleCloseModal} donationId={campaign._id} amountNeeded={campaign.donated ? campaign.maxDonationAmount - campaign.donated / 100 : campaign.maxDonationAmount} />
                         </Elements>
                     </div>
                 </div>
@@ -99,8 +101,8 @@ const CampaignDetails = () => {
                     {recommendedCampaigns.map((recommended) => (
                         <div key={recommended._id} className="bg-white p-4 rounded-lg shadow">
                             <img src={recommended.petPicture} alt={recommended.petName} className='w-full h-60 mb-2 rounded-md' />
-                            <p className="text-2xl font-semibold">{recommended.petName}</p>
-                            <p className="text-gray-700">Goal: ${recommended.maxDonationAmount}</p>
+                            <p className="text-2xl font-semibold text-[#3B3A3A]">{recommended.petName}</p>
+                            <p className="text-[#6C6B6B]">Goal: ${recommended.maxDonationAmount}</p>
                         </div>
                     ))}
                 </div>

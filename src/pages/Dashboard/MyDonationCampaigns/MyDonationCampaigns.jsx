@@ -43,7 +43,7 @@ const MyDonationCampaigns = () => {
 
     const handleViewDonators = async (donationId) => {
         try {
-            const response = await axiosSecure.get(`/donations/donators/${donationId}`);
+            const response = await axiosSecure.get(`/user_donations`);
             setDonators(response.data);
             setSelectedDonation(donationId);
             setShowModal(true);
@@ -110,14 +110,14 @@ const MyDonationCampaigns = () => {
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead>
                                 <tr>
-                                    <th className="py-2 px-4 border-b">Donator</th>
+                                    <th className="py-2 px-4 border-b">Donator Email</th>
                                     <th className="py-2 px-4 border-b">Amount Donated</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {donators.map(donator => (
                                     <tr key={donator._id}>
-                                        <td className="py-2 px-4 border-b">{donator.name}</td>
+                                        <td className="py-2 px-4 border-b">{donator.user_email}</td>
                                         <td className="py-2 px-4 border-b">{donator.amount}</td>
                                     </tr>
                                 ))}
