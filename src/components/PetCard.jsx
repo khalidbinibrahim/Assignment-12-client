@@ -14,7 +14,7 @@ const PetCard = ({ pet }) => {
           </div>
 
           <div className="mb-4 text-center">
-            <h3 className="font-bebasNeue text-2xl text-[#3B3A3A] font-bold">{pet?.petName}</h3>
+            <h3 className="font-bebasNeue text-2xl text-[#07332F] font-bold">{pet?.petName}</h3>
             <p className="text-[#6C6B6B] font-poppins font-normal text-xl">{pet?.petCategory}</p>
           </div>
 

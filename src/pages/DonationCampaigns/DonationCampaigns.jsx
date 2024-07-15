@@ -46,9 +46,10 @@ const DonationCampaigns = () => {
                     {campaigns.map((campaign) => (
                         <div key={campaign._id} className="border p-4 rounded shadow">
                             <img src={campaign.petPicture} alt={campaign.petName} className="w-full h-48 object-cover rounded" />
-                            <h2 className="text-2xl font-semibold text-[#3B3A3A] mt-4">{campaign.petName}</h2>
+                            <h2 className="text-2xl font-semibold text-[#07332F] mt-4">{campaign.petName}</h2>
+                            <div className='divider my-2'/>
                             <p className="text-[#6C6B6B]">Max Donation: ${campaign.maxDonationAmount}</p>
-                            <p className="text-[#6C6B6B]">AmountNeeded: ${campaign.donated ? campaign.maxDonationAmount - campaign.donated / 100 : campaign.maxDonationAmount}</p>
+                            <p className="text-[#6C6B6B]">Amount Needed: ${campaign.donated ? campaign.maxDonationAmount - campaign.donated / 100 : campaign.maxDonationAmount}</p>
                             <p className="text-[#6C6B6B]">Donated Amount: ${campaign.donated ? campaign.donated / 100 : 0}</p>
                             <button onClick={() => handleViewDetails(campaign._id)} className="btn mt-4 hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
                                 View Details

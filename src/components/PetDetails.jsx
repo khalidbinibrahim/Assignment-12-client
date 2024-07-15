@@ -69,7 +69,7 @@ const PetDetails = () => {
                                         <div className="mt-6">
                                             {
                                                 pet.adopted === true ?
-                                                    <span className='px-4 py-2 rounded bg-red-100 text-red-800'>
+                                                    <span className='px-4 py-2 rounded bg-green-100 text-green-800'>
                                                         Adopted
                                                     </span> :
                                                     <button onClick={handleAdoptClick} className="btn hover:bg-[#F7A582] bg-white text-[#F7A582] border border-[#F7A582] hover:text-white font-semibold text-base font-sourceSans3 rounded-md px-7">
